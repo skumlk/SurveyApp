@@ -32,7 +32,7 @@ export default class AuthService {
         if (user !== null) throw new BadRequestError(ErrorCodes.USER_ALREADY_EXIST)
         
         const new_user = await this.userModelService.createNewUser({name, email, password})
-        // this.eventEmitter.emit('user_signup', { user: userRecord, company: companyRecord })
+        //Send email as an event!
 
         return { "token": AuthHelpers.generateAuthenticationToken(new_user) };
     }

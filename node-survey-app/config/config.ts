@@ -2,7 +2,9 @@
 import dotenv from "dotenv"
 import * as _ from "lodash"
 
-dotenv.config();
+const configOutput = dotenv.config();
+if(configOutput.error)
+  throw new Error(".env file is missing")
 
 const required_config_variables: any = {//Safe to use any in here!
   SERVER_PORT: process.env.SERVER_PORT,

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import IUser from "../types/IUser"
+import IUser from "../interfaces/IUser"
 import * as AuthHelpers from "../helpers/auth";
 
 const UserSchema = new mongoose.Schema<IUser>({

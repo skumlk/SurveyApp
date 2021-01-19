@@ -1,4 +1,4 @@
-import IUser from "../types/IUser";
+import IUser from "../interfaces/IUser";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { config } from "../config/config";
