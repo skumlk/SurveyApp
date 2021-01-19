@@ -1,6 +1,4 @@
-
 import Joi from "joi"
-
 export default class ValidationError {
 
     public readonly message: string;

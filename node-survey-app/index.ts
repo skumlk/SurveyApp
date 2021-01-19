@@ -1,24 +1,22 @@
-import dotenv from "dotenv";
+import { config } from "./config/config"
 import startup from "./startup/index"
-const express = require("express")
-
-const result = dotenv.config()
-if (result.error) 
-  throw result.error
+import express from "express"
 
 async function startServer() {
-    
-    const port = process.env.PORT;
+
     console.log("Starting server...")
-    if (!port) { console.log("PORT undefined"); return process.exit(1) }
-
     const app = express()
-    await startup({ expressApp: app });
 
-    app.listen(port, () => {
-        console.log("Server Started on port: ", port)
+    try{
+        await startup({ expressApp: app });
+    }catch(error){
+        console.log(error.message)
+        return process.exit(1);
+    }
+
+    app.listen(config.SERVER_PORT, () => {
+        console.log("Server Started on port: ", config.SERVER_PORT)
     }).on("error", (err: any) => {
-        console.log("am i")
         console.log(err)
     })
 }
