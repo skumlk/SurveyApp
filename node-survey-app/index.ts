@@ -2,14 +2,14 @@ import { config } from "./config/config"
 import startup from "./startup/index"
 import express from "express"
 
+const app = express()
 async function startServer() {
 
     console.log("Starting server...")
-    const app = express()
 
-    try{
+    try {
         await startup({ expressApp: app });
-    }catch(error){
+    } catch (error) {
         console.log(error.message)
         return process.exit(1);
     }
@@ -22,3 +22,4 @@ async function startServer() {
 }
 
 startServer()
+export default app

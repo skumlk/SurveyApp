@@ -8,9 +8,13 @@ export function comparePassword(user: IUser, password: string): boolean {
 };
 
 export function generateAuthenticationToken(user: IUser) {
-    return jwt.sign({ _id: user.id, isAdmin: user.isAdmin },
+    return jwt.sign({ user : { _id: user.id, isAdmin: user.isAdmin } },
         config.JWT_PRIVATE_KEY
     );
+};
+
+export function validateAuthenticationToken(token: string) {
+    return jwt.verify(token, config.JWT_PRIVATE_KEY)
 };
 
 export async function generatePasswordHash(password: string){

@@ -1,5 +1,5 @@
 import Joi from "joi";
-import ValidationError from "./ValidationError";
+import ValidationError from "../errors/ValidationError";
 
 export default class Validation {
 

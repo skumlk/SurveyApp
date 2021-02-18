@@ -1,8 +1,16 @@
+import UnauehenticatedApp from "./UnauthenticatedApp";
+import AuthenticatedApp from "./AuthenticatedApp";
+import { useAuth } from "./services/auth";
+import Header from "./Header";
 
 function App() {
+
+  const { user } = useAuth()
+
   return (
     <div className="App">
-      <h1>Henlo</h1>
+      <Header />
+      { user ? <AuthenticatedApp /> : <UnauehenticatedApp />}
     </div>
   );
 }

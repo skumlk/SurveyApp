@@ -3,10 +3,7 @@ import "reflect-metadata";
 import * as express from "express";
 import Container from "typedi";
 import AuthService from "../services/AuthService";
-
-function successResponse(res: express.Response, data: any = null){
-    return res.send({success: true, data})
-}
+import * as httpHelpers from "../helpers/http";
 
 export default class AuthController {
 
@@ -16,7 +13,7 @@ export default class AuthController {
             const { email, password } = req.body;
             const authService = Container.get(AuthService) // Service locator
             const data = await authService.login(email, password)
-            return successResponse(res, data)
+            return httpHelpers.successResponse(res, data)
         } catch (e) {
             next(e)
         }
@@ -28,7 +25,7 @@ export default class AuthController {
             const { name, email, password } = req.body;
             const authService = Container.get(AuthService) // Service locator
             const data = await authService.register(name, email, password)
-            return successResponse(res, data)
+            return httpHelpers.successResponse(res, data)
         } catch (e) {
             next(e)
         }
