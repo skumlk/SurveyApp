@@ -10,10 +10,10 @@ export default class SurveyController {
     static async createSurvey(req: express.Request, res: express.Response, next: express.NextFunction) {
 
         try {
-            const { name } = req.body;
+            const { title, description } = req.body;
             const authUser = res.locals.authUser;
             const surveyService = Container.get(SurveyService) // Service locator
-            const data = await surveyService.createSurvey(name, authUser)
+            const data = await surveyService.createSurvey(title, description, authUser)
             return httpHelpers.successResponse(res, data)
         } catch (e) {
             next(e)

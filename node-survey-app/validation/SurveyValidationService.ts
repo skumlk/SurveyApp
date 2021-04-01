@@ -5,10 +5,11 @@ import { Service } from "typedi";
 @Service()
 export default class SurveyValidationService extends Validation {
 
-    createSurvey(data: { name: string }, isThrowError = true) {
+    createSurvey(data: { title: string, description: string }, isThrowError = true) {
 
         const schema = Joi.object({
-            name: Joi.string().required()
+            title: Joi.string().required(),
+            description: Joi.string().required()
         })
 
         return this.validate(schema, data, isThrowError)

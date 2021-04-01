@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch, Redirect } from "react-router-dom";
 import { useFormik } from 'formik';
 import { Flex, Spacer, Heading, Button, Input } from "@chakra-ui/react"
 import { useAuth } from "./services/auth";
@@ -16,7 +16,7 @@ function Login() {
 
     onSubmit: values => {
       const handleLogin = async () => {
-        const data = await login.mutate({email: values.email, password: values.password})
+        const data = await login.mutate({ email: values.email, password: values.password })
       }
 
       handleLogin()
@@ -69,8 +69,8 @@ function Register() {
 
     onSubmit: values => {
       const handleRegister = async () => {
-        const { email, name, password} = values
-        const data = await register.mutate({email, name, password})
+        const { email, name, password } = values
+        const data = await register.mutate({ email, name, password })
       }
 
       handleRegister()
@@ -120,7 +120,7 @@ function Register() {
   </React.Fragment>
 }
 
-function UnauehenticatedApp() {
+function UnauthenticatedApp() {
   return (
     <Switch>
       <Route path="/login" component={Login} exact />
@@ -130,4 +130,4 @@ function UnauehenticatedApp() {
   );
 }
 
-export default UnauehenticatedApp;
+export default UnauthenticatedApp;

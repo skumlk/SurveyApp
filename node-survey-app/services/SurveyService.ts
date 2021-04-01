@@ -9,9 +9,9 @@ export default class SurveyService {
     constructor(private surveyValidationService: SurveyValidationService,
         private surveyModelService: SurveyModelService) { }
 
-    async createSurvey(name: string, authUser: IAuthUser) {
-        this.surveyValidationService.createSurvey({ name })  //Validates and throw errors if there is     
-        const survey = await this.surveyModelService.create({name, userId: authUser._id})
+    async createSurvey(title: string, description: string, authUser: IAuthUser) {
+        this.surveyValidationService.createSurvey({ title, description })  //Validates and throw errors if there is     
+        const survey = await this.surveyModelService.create({title, description, userId: authUser._id})
         return { "id": survey._id };
     }
 
